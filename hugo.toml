@@ -1,0 +1,14 @@
+baseURL = "https://coachmoultrie.github.io/"
+languageCode = "en-us"
+title = "Coach Moultrie"
+theme = "nomad-tech"
+
+[params]
+  description = "Personal site and portfolio"
+
+[params.author]
+  name = "Coach Moultrie"
+
+[[params.contact]]
+  name = "email"
+  value = "contact@example.com"
