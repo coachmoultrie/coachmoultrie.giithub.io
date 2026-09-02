@@ -1,63 +1,71 @@
 {{ $style := resources.Get "scss/custom.scss" | toCSS }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-<nav role="navigation" aria-label="Main navigation">
-    <div class="container">
-        <div class="nav-container">
-            <!-- Logo offset 10vw from left -->
-            <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">
-   	        {{ if .Site.Params.logo }}
-        	    <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" />
-     		{{ else }}
-        	    {{ .Site.Title }}
-    		{{ end }}
-	    </a>
+<nav role="navigation" aria-label="Main navigation" style="width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important;">
+    <div class="nav-container" style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; height: 122px !important; position: relative !important;">
+        
+        <!-- Logo Link & Image -->
+        <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home" style="margin-left: 3vw !important; height: 100% !important; display: inline-flex !important; align-items: center !important; text-decoration: none !important; z-index: 9997 !important;">
+            {{ if .Site.Params.logo }}
+                <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" style="height: 95% !important; width: auto !important; object-fit: contain !important; display: block !important;" />
+            {{ else }}
+                <span style="font-size: 1.8rem; font-weight: bold; color: #fff;">{{ .Site.Title }}</span>
+            {{ end }}
+        </a>
 
-            <!-- Trigger Button -->
-            <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
-                ☰
-            </button>
+        <!-- Open Drawer Trigger Button -->
+        <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem 1rem !important; position: absolute !important; right: 1.5rem !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 9998 !important;">
+            ☰
+        </button>
 
-            <!-- Slide Drawer -->
-            <div class="nav-dropdown" id="nav-menu">
-                <div class="drawer-header">
-                    <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
-                        ☰
-                    </button>
-                </div>
-
-                <!-- Hardcoded links with forced inline display styles -->
-                <ul class="nav-links" style="display: flex !important; flex-direction: column !important; visibility: visible !important; opacity: 1 !important;">
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Home</a></li>
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Social</a></li>
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Blog</a></li>
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Portfolio</a></li>
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">About</a></li>
-                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Travel</a></li>
-                </ul>
+        <!-- Off-Canvas Drawer Panel -->
+        <div class="nav-dropdown" id="nav-menu">
+            <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; width: 100% !important; margin-bottom: 2rem !important;">
+                <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem !important;">
+                    ☰
+                </button>
             </div>
 
-            <!-- Dark Overlay Backdrop -->
-            <div class="nav-overlay" id="nav-overlay"></div>
+            <!-- FORCED VISIBLE NAVIGATION LINKS -->
+            <ul class="nav-links" style="display: flex !important; flex-direction: column !important; list-style: none !important; padding: 0 !important; margin: 0 !important; gap: 1.5rem !important; opacity: 1 !important; visibility: visible !important;">
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Home</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Social</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Blog</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Portfolio</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">About</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Travel</a></li>
+            </ul>
         </div>
+
+        <!-- Dark Backdrop Overlay -->
+        <div class="nav-overlay" id="nav-overlay"></div>
     </div>
 </nav>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('hamburger-toggle');
-    const closeBtn = document.getElementById('hamburger-close');
-    const menu = document.getElementById('nav-menu');
-    const overlay = document.getElementById('nav-overlay');
+  (function() {
+    function initMenu() {
+      const toggleBtn = document.getElementById('hamburger-toggle');
+      const closeBtn = document.getElementById('hamburger-close');
+      const menu = document.getElementById('nav-menu');
+      const overlay = document.getElementById('nav-overlay');
 
-    function toggleMenu() {
-      const isOpen = menu.classList.toggle('active');
-      if (overlay) overlay.classList.toggle('active');
-      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
+      function toggleMenu(e) {
+        if (e) e.preventDefault();
+        const isOpen = menu.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
+      }
+
+      if (toggleBtn) toggleBtn.onclick = toggleMenu;
+      if (closeBtn) closeBtn.onclick = toggleMenu;
+      if (overlay) overlay.onclick = toggleMenu;
     }
 
-    if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
-    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
-    if (overlay) overlay.addEventListener('click', toggleMenu);
-  });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMenu);
+    } else {
+      initMenu();
+    }
+  })();
 </script>
