@@ -4,32 +4,34 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
-            <!-- Logo offset 5% from the left edge -->
+            <!-- Large Restored Logo -->
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
 
-            <!-- Trigger Button on Far Right (When Drawer is Closed) -->
+            <!-- Trigger Button on Far Right -->
             <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
                 ☰
             </button>
 
-            <!-- 30vw Off-Canvas Slide Drawer -->
+            <!-- Responsive Slide Drawer -->
             <div class="nav-dropdown" id="nav-menu">
                 <div class="drawer-header">
-                    <!-- Icon aligned to the left of the drawer -->
                     <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
                         ☰
                     </button>
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="{{ .Site.BaseURL }}" aria-current="false">{{ i18n "home" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}social/" aria-current="false">{{ i18n "social" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}posts/" aria-current="false">{{ i18n "blog" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}portfolio/" aria-current="false">{{ i18n "portfolio" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}about/" aria-current="false">{{ i18n "about" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}travel/" aria-current="false">{{ i18n "travel" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}">{{ i18n "home" | default "Home" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}social/">{{ i18n "social" | default "Social" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}posts/">{{ i18n "blog" | default "Blog" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}portfolio/">{{ i18n "portfolio" | default "Portfolio" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}about/">{{ i18n "about" | default "About" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}travel/">{{ i18n "travel" | default "Travel" }}</a></li>
                 </ul>
             </div>
+
+            <!-- Translucent Overlay Backdrop -->
+            <div class="nav-overlay" id="nav-overlay"></div>
         </div>
     </div>
 </nav>
@@ -39,13 +41,17 @@
     const toggleBtn = document.getElementById('hamburger-toggle');
     const closeBtn = document.getElementById('hamburger-close');
     const menu = document.getElementById('nav-menu');
+    const overlay = document.getElementById('nav-overlay');
 
     function toggleMenu() {
       const isOpen = menu.classList.toggle('active');
+      if (overlay) overlay.classList.toggle('active');
       if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
     }
 
     if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
     if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    // Clicking anywhere on the dark overlay closes the drawer
+    if (overlay) overlay.addEventListener('click', toggleMenu);
   });
 </script>

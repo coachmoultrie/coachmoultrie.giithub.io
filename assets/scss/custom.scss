@@ -9,7 +9,7 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
   visibility: hidden !important;
 }
 
-/* Force full width across navigation header wrappers */
+/* Force header bar full width */
 header, 
 .site-header, 
 nav, 
@@ -27,17 +27,18 @@ nav,
     justify-content: space-between;
     align-items: center;
     width: 100% !important;
-    padding: 1rem 0;
+    padding: 1.25rem 0;
     position: relative;
 }
 
-/* Logo positioned 5% in from the left viewport edge */
+/* Restored Main Logo (Original Size & Edge Placement) */
 .logo {
     margin-left: 5vw !important;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
+    font-size: 2.25rem !important; /* Restored large logo size */
+    font-weight: 700 !important;
+    color: #fff !important;
     text-decoration: none;
+    line-height: 1.2;
     z-index: 9997;
 }
 
@@ -45,13 +46,13 @@ nav,
 .hamburger-btn {
     background: none;
     border: none;
-    font-size: 1.8rem;
+    font-size: 2rem !important; /* Larger icon touch target for mobile */
     color: #fff;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
-/* Static trigger icon on the far right when drawer is closed */
+/* Trigger icon on far right when drawer is closed */
 .header-trigger {
     position: absolute !important;
     right: 1.5rem !important;
@@ -60,39 +61,41 @@ nav,
     z-index: 9998 !important;
 }
 
-/* 30vw Off-canvas drawer sliding in from the right boundary */
+/* Off-canvas drawer (Desktop: 30vw | Mobile: 80vw) */
 .nav-dropdown {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
     left: auto !important;
     width: 30vw !important;
-    min-width: 250px !important;
     height: 100vh;
     background-color: #384959 !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.5rem 2rem;
+    box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
     z-index: 9999 !important;
+    box-sizing: border-box !important;
 
-    /* Hidden completely off-screen to the right by default */
+    /* Hidden off-screen to the right by default */
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
 }
 
-/* Container inside drawer aligning icon to the LEFT of the drawer panel */
-.drawer-header {
-    display: flex;
-    justify-content: flex-start; /* Aligns icon to top-left of the drawer */
-    width: 100%;
-    margin-bottom: 2rem;
+/* Responsive fix for Mobile screens */
+@media screen and (max-width: 768px) {
+    .nav-dropdown {
+        width: 80vw !important; /* Takes 80% screen width on mobile so links render cleanly */
+    }
 }
 
-/* Icon inside drawer */
-.drawer-trigger {
-    color: #fff;
+/* Top-left icon container inside drawer */
+.drawer-header {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 2rem;
 }
 
 /* Slide into view when active */
@@ -100,25 +103,53 @@ nav,
     transform: translateX(0) !important;
 }
 
-/* Nav links inside drawer */
+/* Nav links formatting inside drawer */
 .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+}
+
+.nav-links li {
+    display: block !important;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.1rem;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-size: 1.25rem !important; /* Highly legible on mobile viewports */
+    font-weight: 500;
+    display: block;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a[aria-current="true"] {
-    color: #88bcd4;
-    text-decoration: underline;
+    color: #88bcd4 !important;
+    text-decoration: underline !important;
+}
+
+/* Dark Translucent Backdrop Overlay */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* 60% black opacity */
+    z-index: 9998 !important; /* Sitting just behind the menu (9999) */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Fade in overlay when menu is active */
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Enables clicking on the backdrop to dismiss the menu */
 }
