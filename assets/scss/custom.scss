@@ -31,12 +31,12 @@ nav,
     position: relative;
 }
 
-/* Restored Main Logo (Original Size & Edge Placement) */
+/* Logo moved further right (10vw margin) */
 .logo {
-    margin-left: 5vw !important;
-    font-size: 2.25rem !important; /* Restored large logo size */
+    margin-left: 10vw !important;
+    font-size: 2.25rem !important;
     font-weight: 700 !important;
-    color: #fff !important;
+    color: #ffffff !important;
     text-decoration: none;
     line-height: 1.2;
     z-index: 9997;
@@ -46,8 +46,8 @@ nav,
 .hamburger-btn {
     background: none;
     border: none;
-    font-size: 2rem !important; /* Larger icon touch target for mobile */
-    color: #fff;
+    font-size: 2rem !important;
+    color: #ffffff !important;
     cursor: pointer;
     padding: 0.5rem 1rem;
 }
@@ -61,41 +61,41 @@ nav,
     z-index: 9998 !important;
 }
 
-/* Off-canvas drawer (Desktop: 30vw | Mobile: 80vw) */
+/* Off-canvas drawer */
 .nav-dropdown {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
     left: auto !important;
     width: 30vw !important;
-    height: 100vh;
+    height: 100vh !important;
     background-color: #384959 !important;
     border-left: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2rem !important;
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 9999 !important;
+    z-index: 10000 !important; /* Raised above everything */
     box-sizing: border-box !important;
 
-    /* Hidden off-screen to the right by default */
+    /* Hidden off-screen by default */
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* Responsive fix for Mobile screens */
+/* Mobile drawer width */
 @media screen and (max-width: 768px) {
     .nav-dropdown {
-        width: 80vw !important; /* Takes 80% screen width on mobile so links render cleanly */
+        width: 85vw !important; /* Expand width on mobile */
     }
 }
 
-/* Top-left icon container inside drawer */
+/* Top-left icon inside drawer */
 .drawer-header {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 2rem;
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
 }
 
 /* Slide into view when active */
@@ -103,53 +103,59 @@ nav,
     transform: translateX(0) !important;
 }
 
-/* Nav links formatting inside drawer */
-.nav-links {
+/* FORCE links to display on mobile and desktop */
+.nav-links,
+.nav-dropdown .nav-links {
+    display: flex !important;
+    flex-direction: column !important;
     list-style: none !important;
     padding: 0 !important;
     margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
     gap: 1.5rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-.nav-links li {
+.nav-links li,
+.nav-dropdown .nav-links li {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-.nav-links a {
-    text-decoration: none !important;
+.nav-links a,
+.nav-dropdown .nav-links a {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     color: #ffffff !important;
-    font-size: 1.25rem !important; /* Highly legible on mobile viewports */
-    font-weight: 500;
-    display: block;
-    transition: color 0.2s ease;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
 }
 
-.nav-links a:hover,
-.nav-links a[aria-current="true"] {
+.nav-links a:hover {
     color: #88bcd4 !important;
     text-decoration: underline !important;
 }
 
-/* Dark Translucent Backdrop Overlay */
+/* Dark Backdrop Overlay */
 .nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6); /* 60% black opacity */
-    z-index: 9998 !important; /* Sitting just behind the menu (9999) */
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999 !important;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Fade in overlay when menu is active */
 .nav-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; /* Enables clicking on the backdrop to dismiss the menu */
+    pointer-events: auto;
 }

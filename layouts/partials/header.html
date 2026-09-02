@@ -4,15 +4,15 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
-            <!-- Large Restored Logo -->
+            <!-- Logo offset 10vw from left -->
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
 
-            <!-- Trigger Button on Far Right -->
+            <!-- Trigger Button -->
             <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
                 ☰
             </button>
 
-            <!-- Responsive Slide Drawer -->
+            <!-- Slide Drawer -->
             <div class="nav-dropdown" id="nav-menu">
                 <div class="drawer-header">
                     <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
@@ -21,16 +21,16 @@
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="{{ .Site.BaseURL }}">{{ i18n "home" | default "Home" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}social/">{{ i18n "social" | default "Social" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}posts/">{{ i18n "blog" | default "Blog" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}portfolio/">{{ i18n "portfolio" | default "Portfolio" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}about/">{{ i18n "about" | default "About" }}</a></li>
-                    <li><a href="{{ .Site.BaseURL }}travel/">{{ i18n "travel" | default "Travel" }}</a></li>
+                    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+                    <li><a href="{{ .Site.BaseURL }}social/">Social</a></li>
+                    <li><a href="{{ .Site.BaseURL }}posts/">Blog</a></li>
+                    <li><a href="{{ .Site.BaseURL }}portfolio/">Portfolio</a></li>
+                    <li><a href="{{ .Site.BaseURL }}about/">About</a></li>
+                    <li><a href="{{ .Site.BaseURL }}travel/">Travel</a></li>
                 </ul>
             </div>
 
-            <!-- Translucent Overlay Backdrop -->
+            <!-- Dark Overlay Backdrop -->
             <div class="nav-overlay" id="nav-overlay"></div>
         </div>
     </div>
@@ -51,7 +51,6 @@
 
     if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
     if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
-    // Clicking anywhere on the dark overlay closes the drawer
     if (overlay) overlay.addEventListener('click', toggleMenu);
   });
 </script>
