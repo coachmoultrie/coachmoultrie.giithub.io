@@ -1,6 +1,6 @@
-/* Remove hero background animations, particle canvases, and force a solid color */
+/* Remove hero backgrounds/patterns and force a solid color */
 body, .hero, .site-header, main, section, header, canvas {
-  background-color: #1a1a2e !important; /* Replace with your preferred solid HEX color */
+  background-color: #1a1a2e !important;
   background-image: none !important;
 }
 
@@ -9,7 +9,7 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
   visibility: hidden !important;
 }
 
-/* Ensure nav container aligns items horizontally */
+/* Nav container layout */
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -17,7 +17,7 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     position: relative;
 }
 
-/* Force hamburger button to display everywhere */
+/* Hamburger button on right */
 .hamburger-btn {
     display: block !important;
     background: none;
@@ -26,19 +26,20 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     color: #fff;
     cursor: pointer;
     padding: 0.5rem;
+    z-index: 10000;
 }
 
-/* Off-canvas slide-out menu drawer */
+/* 30vw Off-canvas drawer sliding in from the right */
 .nav-dropdown {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 30vw; /* Takes up exactly 30% of the screen width */
-    min-width: 250px; /* Ensures readable text on small screens */
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 30vw;
+    min-width: 250px;
     height: 100vh;
-    background-color: #1a1a2e; /* Solid background */
+    background-color: #1a1a2e;
     border-left: 1px solid #333;
-    padding: 2rem 1.5rem;
+    padding: 5rem 1.5rem 2rem 1.5rem;
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
     z-index: 9999;
 
@@ -47,32 +48,18 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
 }
 
-/* Slide smoothly into view when active */
+/* Slide into view when toggled active */
 .nav-dropdown.active {
-    transform: translateX(0);
-}
-
-/* Position hamburger button on top of everything so it remains clickable */
-.hamburger-btn {
-    display: block !important;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: #fff;
-    cursor: pointer;
-    padding: 0.5rem;
-    position: relative;
-    z-index: 10000;
+    transform: translateX(0) !important;
 }
 
 /* Nav links formatting inside drawer */
 .nav-links {
     list-style: none;
     padding: 0;
-    margin: 2rem 0 0 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -88,4 +75,5 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
 .nav-links a:hover,
 .nav-links a[aria-current="true"] {
     color: #00adb5;
+    text-decoration: underline;
 }

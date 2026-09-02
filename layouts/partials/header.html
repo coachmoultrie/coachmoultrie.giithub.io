@@ -6,12 +6,12 @@
         <div class="nav-container">
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
             
-            <!-- Hamburger Button (Visible on ALL screens) -->
+            <!-- Hamburger Button -->
             <button class="hamburger-btn" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
                 ☰
             </button>
 
-            <!-- Dropdown Wrapper for Navigation Links -->
+            <!-- 30vw Off-Canvas Slide-Out Drawer -->
             <div class="nav-dropdown" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="{{ .Site.BaseURL }}" aria-current="false">{{ i18n "home" }}</a></li>
