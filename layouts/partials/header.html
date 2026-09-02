@@ -22,7 +22,7 @@
         <div class="nav-dropdown" id="nav-menu">
             <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; width: 100% !important; margin-bottom: 2rem !important;">
                 <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem !important;">
-                    ☰
+                    ✕
                 </button>
             </div>
 
@@ -49,6 +49,14 @@
       const closeBtn = document.getElementById('hamburger-close');
       const menu = document.getElementById('nav-menu');
       const overlay = document.getElementById('nav-overlay');
+
+      // Teleport menu and overlay to <body> to bypass parent theme overflow:hidden clipping
+      if (menu && menu.parentElement !== document.body) {
+        document.body.appendChild(menu);
+      }
+      if (overlay && overlay.parentElement !== document.body) {
+        document.body.appendChild(overlay);
+      }
 
       function toggleMenu(e) {
         if (e) e.preventDefault();

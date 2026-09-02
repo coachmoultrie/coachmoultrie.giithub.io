@@ -9,7 +9,7 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     visibility: hidden !important;
 }
 
-/* Force header bar full width */
+/* Force header bar full width and prevent overflow clipping */
 header, 
 .site-header, 
 nav, 
@@ -19,6 +19,7 @@ nav,
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    overflow: visible !important;
 }
 
 /* Header container layout scaled down by 30% (175px -> 122px) */
@@ -30,6 +31,7 @@ nav,
     height: 122px !important;
     padding: 0 !important;
     position: relative !important;
+    overflow: visible !important;
 }
 
 /* Logo position (maintained at 3vw from left) */
@@ -86,7 +88,7 @@ nav,
     z-index: 9998 !important;
 }
 
-/* Off-canvas drawer */
+/* Off-canvas drawer container */
 .nav-dropdown {
     position: fixed !important;
     top: 0 !important;
@@ -94,12 +96,14 @@ nav,
     left: auto !important;
     width: 30vw !important;
     height: 100vh !important;
+    height: 100dvh !important;
     background-color: #384959 !important;
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     padding: 1.5rem 2rem !important;
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 10000 !important;
+    z-index: 999999 !important; /* Maximum z-index layer above theme content */
     box-sizing: border-box !important;
+    overflow-y: auto !important; /* Enable scrolling if links exceed screen height */
 
     /* Hidden off-screen by default */
     transform: translateX(100%);
@@ -110,7 +114,7 @@ nav,
     opacity: 1 !important;
 }
 
-/* Mobile drawer width */
+/* Mobile drawer adjustments */
 @media screen and (max-width: 768px) {
     .nav-dropdown {
         width: 85vw !important;
@@ -126,12 +130,12 @@ nav,
     margin-bottom: 2rem !important;
 }
 
-/* Slide into view when active */
+/* Slide into view when active class is applied by JS */
 .nav-dropdown.active {
     transform: translateX(0) !important;
 }
 
-/* OVERRIDE THEME MOBILE HIDING RULES & FORCE LINK VISIBILITY */
+/* OVERRIDE ALL THEME HIDING RULES & FORCE LINK VISIBILITY */
 .nav-dropdown .nav-links,
 .nav-links,
 ul.nav-links {
@@ -193,7 +197,7 @@ ul.nav-links li a {
     width: 100vw !important;
     height: 100vh !important;
     background-color: rgba(0, 0, 0, 0.6) !important;
-    z-index: 9999 !important;
+    z-index: 999998 !important;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
