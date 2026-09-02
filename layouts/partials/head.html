@@ -1,0 +1,9 @@
+{{ $scss := resources.Get "scss/main.scss" }}
+{{ $css := $scss | css.Sass | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{ $customScss := resources.Get "scss/custom.scss" }}
+{{ if $customScss }}
+  {{ $customCss := $customScss | css.Sass | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $customCss.RelPermalink }}" integrity="{{ $customCss.Data.Integrity }}">
+{{ end }}
