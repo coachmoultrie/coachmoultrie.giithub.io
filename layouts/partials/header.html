@@ -4,7 +4,7 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
-            <!-- Left Logo Placeholder -->
+            <!-- Logo offset 5% from the left edge -->
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
 
             <!-- Trigger Button on Far Right (When Drawer is Closed) -->
@@ -14,8 +14,8 @@
 
             <!-- 30vw Off-Canvas Slide Drawer -->
             <div class="nav-dropdown" id="nav-menu">
-                <!-- Hamburger Icon Pinned Inside Drawer Top-Right -->
                 <div class="drawer-header">
+                    <!-- Icon aligned to the left of the drawer -->
                     <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
                         ☰
                     </button>

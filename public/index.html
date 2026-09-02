@@ -43,35 +43,64 @@
 
 
 
-<script src="/js/main.min.c9b33a38dbdedfcbe97920636476ef6d59299434186c5c321a3a660014b1cd01.js" integrity="sha256-ybM6ONve38vpeSBjZHbvbVkplDQYbFwyGjpmABSxzQE=" defer></script>
+  
+  <link rel="stylesheet" href="/scss/custom.min.8291cb238272ca5ee1a19e0dd4703a5035973084b12ab76672b834dc8bb29904.css" integrity="sha256-gpHLI4Jyyl7hoZ4N1HA6UDWXMISxKrdmcrg03IuymQQ=">
+
     
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    <nav role="navigation" aria-label="Main navigation">
+    
+<link rel="stylesheet" href="/scss/custom.css">
+
+<nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
+            
             <a href="http://localhost:1313/" class="logo" aria-label="Coach Moultrie - Home">GP</a>
-            <ul class="nav-links" id="nav-menu">
-                <li><a href="http://localhost:1313/" aria-current="false">Home</a></li>
-                <li><a href="http://localhost:1313/social/" aria-current="false">Social Media</a></li>
-                <li><a href="http://localhost:1313/posts/" aria-current="false">Blog</a></li>
-                <li><a href="http://localhost:1313/portfolio/" aria-current="false">Portfolio</a></li>
-                <li><a href="http://localhost:1313/about/" aria-current="false">About</a></li>
-                <li><a href="http://localhost:1313/travel/" aria-current="false">Travel</a></li>
-            </ul>
-            <div class="lang-switcher" role="group" aria-label="Language selection">
-                
-                <a href="http://localhost:1313/en/" 
-                   class="lang-link active" 
-                   aria-label="Switch to " 
-                   aria-current="true">EN</a>
-                
+
+            
+            <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            
+            <div class="nav-dropdown" id="nav-menu">
+                <div class="drawer-header">
+                    
+                    <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
+                        ☰
+                    </button>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="http://localhost:1313/" aria-current="false">Home</a></li>
+                    <li><a href="http://localhost:1313/social/" aria-current="false">Social Media</a></li>
+                    <li><a href="http://localhost:1313/posts/" aria-current="false">Blog</a></li>
+                    <li><a href="http://localhost:1313/portfolio/" aria-current="false">Portfolio</a></li>
+                    <li><a href="http://localhost:1313/about/" aria-current="false">About</a></li>
+                    <li><a href="http://localhost:1313/travel/" aria-current="false">Travel</a></li>
+                </ul>
             </div>
-            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">☰</button>
         </div>
     </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('hamburger-toggle');
+    const closeBtn = document.getElementById('hamburger-close');
+    const menu = document.getElementById('nav-menu');
+
+    function toggleMenu() {
+      const isOpen = menu.classList.toggle('active');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
+    }
+
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+  });
+</script>
     <main id="main" role="main">
         
 <section class="hero">
