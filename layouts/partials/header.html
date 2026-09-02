@@ -4,15 +4,14 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
-            <!-- Hamburger Button on the far Left -->
+            <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
+            
+            <!-- Hamburger Button (Visible on ALL screens) -->
             <button class="hamburger-btn" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
                 ☰
             </button>
 
-            <!-- Logo -->
-            <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
-
-            <!-- Left Slide-Out Drawer -->
+            <!-- Dropdown Wrapper for Navigation Links -->
             <div class="nav-dropdown" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="{{ .Site.BaseURL }}" aria-current="false">{{ i18n "home" }}</a></li>

@@ -1,6 +1,6 @@
 /* Remove hero background animations, particle canvases, and force a solid color */
 body, .hero, .site-header, main, section, header, canvas {
-  background-color: #384959 !important; /* Replace with your preferred solid HEX color */
+  background-color: #1a1a2e !important; /* Replace with your preferred solid HEX color */
   background-image: none !important;
 }
 
@@ -9,16 +9,15 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
   visibility: hidden !important;
 }
 
-/* Keep header bar items aligned */
+/* Ensure nav container aligns items horizontally */
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    width: 100%;
 }
 
-/* Hamburger icon locked on the left */
+/* Force hamburger button to display everywhere */
 .hamburger-btn {
     display: block !important;
     background: none;
@@ -27,40 +26,53 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     color: #fff;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 10000;
 }
 
-/* Off-canvas panel fixed to the TOP LEFT */
+/* Off-canvas slide-out menu drawer */
 .nav-dropdown {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 30vw; /* 30% width */
-    min-width: 250px; /* Readability on phones */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30vw; /* Takes up exactly 30% of the screen width */
+    min-width: 250px; /* Ensures readable text on small screens */
     height: 100vh;
-    background-color: #1a1a2e;
-    border-right: 1px solid #333;
-    padding: 5rem 1.5rem 2rem 1.5rem;
-    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a2e; /* Solid background */
+    border-left: 1px solid #333;
+    padding: 2rem 1.5rem;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
     z-index: 9999;
 
-    /* Hidden off-screen to the LEFT by default */
-    transform: translateX(-100%);
+    /* Hidden off-screen to the right by default */
+    transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
 }
 
-/* Slide right into view when active */
+/* Slide smoothly into view when active */
 .nav-dropdown.active {
-    transform: translateX(0) !important;
+    transform: translateX(0);
 }
 
-/* Vertical link list */
+/* Position hamburger button on top of everything so it remains clickable */
+.hamburger-btn {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 10000;
+}
+
+/* Nav links formatting inside drawer */
 .nav-links {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 2rem 0 0 0;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -70,6 +82,7 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     text-decoration: none;
     color: #fff;
     font-size: 1.1rem;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
