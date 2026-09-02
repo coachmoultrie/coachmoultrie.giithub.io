@@ -4,20 +4,22 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
-            <!-- Logo on the far left -->
+            <!-- Left Logo Placeholder -->
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
-            
-            <!-- Static Trigger Button (Visible when drawer is closed) -->
-            <button class="hamburger-btn static-btn" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+
+            <!-- Trigger Button on Far Right (When Drawer is Closed) -->
+            <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
                 ☰
             </button>
 
-            <!-- 30vw Off-Canvas Slide-Out Drawer -->
+            <!-- 30vw Off-Canvas Slide Drawer -->
             <div class="nav-dropdown" id="nav-menu">
-                <!-- Close/Toggle Button inside the drawer (Slides WITH the panel) -->
-                <button class="hamburger-btn drawer-btn" id="hamburger-close" aria-label="Close navigation menu">
-                    ✕
-                </button>
+                <!-- Hamburger Icon Pinned Inside Drawer Top-Right -->
+                <div class="drawer-header">
+                    <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
+                        ☰
+                    </button>
+                </div>
 
                 <ul class="nav-links">
                     <li><a href="{{ .Site.BaseURL }}" aria-current="false">{{ i18n "home" }}</a></li>
