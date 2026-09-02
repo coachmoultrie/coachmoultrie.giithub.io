@@ -1,7 +1,12 @@
-/* Remove hero backgrounds/patterns and force a solid color */
-body, .hero, .site-header, main {
-  background-color: #1a1a2e !important; /* Replace with your preferred HEX color */
+/* Remove hero background animations, particle canvases, and force a solid color */
+body, .hero, .site-header, main, section, header, canvas {
+  background-color: #1a1a2e !important; /* Replace with your preferred solid HEX color */
   background-image: none !important;
+}
+
+canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* Ensure nav container aligns items horizontally */
@@ -66,24 +71,4 @@ body, .hero, .site-header, main {
 .nav-links a[aria-current="true"] {
     color: #00adb5;
     text-decoration: underline;
-}
-
-/* Language Switcher Styling inside Dropdown */
-.lang-switcher {
-    display: flex;
-    gap: 0.5rem;
-    border-top: 1px solid #333;
-    padding-top: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-.lang-link {
-    color: #888;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: bold;
-}
-
-.lang-link.active {
-    color: #00adb5;
 }
