@@ -20,13 +20,14 @@
                     </button>
                 </div>
 
-                <ul class="nav-links">
-                    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
-                    <li><a href="{{ .Site.BaseURL }}social/">Social</a></li>
-                    <li><a href="{{ .Site.BaseURL }}posts/">Blog</a></li>
-                    <li><a href="{{ .Site.BaseURL }}portfolio/">Portfolio</a></li>
-                    <li><a href="{{ .Site.BaseURL }}about/">About</a></li>
-                    <li><a href="{{ .Site.BaseURL }}travel/">Travel</a></li>
+                <!-- Hardcoded links with forced inline display styles -->
+                <ul class="nav-links" style="display: flex !important; flex-direction: column !important; visibility: visible !important; opacity: 1 !important;">
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Home</a></li>
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Social</a></li>
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Blog</a></li>
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Portfolio</a></li>
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">About</a></li>
+                    <li style="display: block !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; visibility: visible !important;">Travel</a></li>
                 </ul>
             </div>
 

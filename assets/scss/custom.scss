@@ -31,7 +31,7 @@ nav,
     position: relative;
 }
 
-/* Logo moved further right (10vw margin) */
+/* Logo moved 10vw from left edge */
 .logo {
     margin-left: 10vw !important;
     font-size: 2.25rem !important;
@@ -73,7 +73,7 @@ nav,
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     padding: 1.5rem 2rem !important;
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 10000 !important; /* Raised above everything */
+    z-index: 10000 !important;
     box-sizing: border-box !important;
 
     /* Hidden off-screen by default */
@@ -86,7 +86,7 @@ nav,
 /* Mobile drawer width */
 @media screen and (max-width: 768px) {
     .nav-dropdown {
-        width: 85vw !important; /* Expand width on mobile */
+        width: 85vw !important;
     }
 }
 
@@ -103,35 +103,43 @@ nav,
     transform: translateX(0) !important;
 }
 
-/* FORCE links to display on mobile and desktop */
-.nav-links,
-.nav-dropdown .nav-links {
-    display: flex !important;
-    flex-direction: column !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    gap: 1.5rem !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* OVERRIDE THEME MOBILE HIDING RULES */
+@media screen and (max-width: 991px), screen and (max-width: 768px) {
+    .nav-dropdown .nav-links,
+    .nav-links,
+    ul.nav-links {
+        display: flex !important;
+        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+
+    .nav-dropdown .nav-links li,
+    .nav-links li {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .nav-dropdown .nav-links a,
+    .nav-links a {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #ffffff !important;
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+    }
 }
 
-.nav-links li,
-.nav-dropdown .nav-links li {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-.nav-links a,
-.nav-dropdown .nav-links a {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* Link Styles */
+.nav-links a {
+    text-decoration: none !important;
     color: #ffffff !important;
     font-size: 1.25rem !important;
     font-weight: 600 !important;
-    text-decoration: none !important;
 }
 
 .nav-links a:hover {
