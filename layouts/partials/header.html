@@ -5,7 +5,13 @@
     <div class="container">
         <div class="nav-container">
             <!-- Logo offset 10vw from left -->
-            <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
+            <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">
+   	        {{ if .Site.Params.logo }}
+        	    <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" />
+     		{{ else }}
+        	    {{ .Site.Title }}
+    		{{ end }}
+	    </a>
 
             <!-- Trigger Button -->
             <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">

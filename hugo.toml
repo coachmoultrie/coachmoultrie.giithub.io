@@ -5,6 +5,7 @@ theme = "nomad-tech"
 
 [params]
   description = "Personal site and portfolio"
+  logo = "/images/logo.png"
 
 [params.author]
   name = "Coach Moultrie"
