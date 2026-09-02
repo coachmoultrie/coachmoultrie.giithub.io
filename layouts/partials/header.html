@@ -4,15 +4,21 @@
 <nav role="navigation" aria-label="Main navigation">
     <div class="container">
         <div class="nav-container">
+            <!-- Logo on the far left -->
             <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">{{ .Site.Params.logo | default "GP" }}</a>
             
-            <!-- Hamburger Button -->
-            <button class="hamburger-btn" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+            <!-- Static Trigger Button (Visible when drawer is closed) -->
+            <button class="hamburger-btn static-btn" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
                 ☰
             </button>
 
             <!-- 30vw Off-Canvas Slide-Out Drawer -->
             <div class="nav-dropdown" id="nav-menu">
+                <!-- Close/Toggle Button inside the drawer (Slides WITH the panel) -->
+                <button class="hamburger-btn drawer-btn" id="hamburger-close" aria-label="Close navigation menu">
+                    ✕
+                </button>
+
                 <ul class="nav-links">
                     <li><a href="{{ .Site.BaseURL }}" aria-current="false">{{ i18n "home" }}</a></li>
                     <li><a href="{{ .Site.BaseURL }}social/" aria-current="false">{{ i18n "social" }}</a></li>
@@ -28,14 +34,16 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('hamburger-toggle');
+    const toggleBtn = document.getElementById('hamburger-toggle');
+    const closeBtn = document.getElementById('hamburger-close');
     const menu = document.getElementById('nav-menu');
 
-    if (btn && menu) {
-      btn.addEventListener('click', function () {
-        const isOpen = menu.classList.toggle('active');
-        btn.setAttribute('aria-expanded', isOpen);
-      });
+    function toggleMenu() {
+      const isOpen = menu.classList.toggle('active');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
     }
+
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
   });
 </script>
