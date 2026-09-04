@@ -1,15 +1,23 @@
-/* Global solid background #384959 */
+/* ==========================================================================
+   GLOBAL BRANDING & BACKGROUND OVERRIDES
+   ========================================================================== */
+
+/* Force solid theme color background across all site containers */
 body, .hero, .site-header, main, section, header, canvas {
     background-color: #384959 !important;
     background-image: none !important;
 }
 
+/* Hide background particles or canvas animations */
 canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     display: none !important;
     visibility: hidden !important;
 }
 
-/* Force header bar full width and prevent overflow clipping */
+/* ==========================================================================
+   HEADER CONTAINER & LOGO
+   ========================================================================== */
+
 header, 
 .site-header, 
 nav, 
@@ -22,7 +30,6 @@ nav,
     overflow: visible !important;
 }
 
-/* Header container layout scaled down by 30% (175px -> 122px) */
 .nav-container {
     display: flex !important;
     justify-content: space-between !important;
@@ -34,7 +41,6 @@ nav,
     overflow: visible !important;
 }
 
-/* Logo position (maintained at 3vw from left) */
 .logo {
     margin-left: 3vw !important;
     height: 100% !important;
@@ -44,7 +50,6 @@ nav,
     z-index: 9997 !important;
 }
 
-/* Logo image filling 95% of the scaled header height */
 .logo-img {
     height: 95% !important;
     width: auto !important;
@@ -53,16 +58,10 @@ nav,
     display: block !important;
 }
 
-@media screen and (max-width: 768px) {
-    .nav-container {
-        height: 90px !important;
-    }
-    .logo {
-        margin-left: 1.5vw !important;
-    }
-}
+/* ==========================================================================
+   HAMBURGER BUTTONS & BASE DRAWER LAYOUT
+   ========================================================================== */
 
-/* Base Hamburger Icon Styling */
 .hamburger-btn {
     background: none !important;
     border: none !important;
@@ -78,7 +77,6 @@ nav,
     }
 }
 
-/* Trigger icon on far right when drawer is closed */
 .header-trigger {
     position: absolute !important;
     right: 1.5rem !important;
@@ -88,8 +86,8 @@ nav,
     z-index: 9998 !important;
 }
 
-/* Off-canvas drawer container */
-.nav-dropdown {
+.nav-dropdown,
+div#nav-menu {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
@@ -101,11 +99,10 @@ nav,
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     padding: 1.5rem 2rem !important;
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 999999 !important; /* Maximum z-index layer above theme content */
+    z-index: 999999 !important;
     box-sizing: border-box !important;
-    overflow-y: auto !important; /* Enable scrolling if links exceed screen height */
+    overflow-y: auto !important;
 
-    /* Hidden off-screen by default */
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex !important;
@@ -114,15 +111,10 @@ nav,
     opacity: 1 !important;
 }
 
-/* Mobile drawer adjustments */
-@media screen and (max-width: 768px) {
-    .nav-dropdown {
-        width: 85vw !important;
-        padding: 1.25rem 1.5rem !important;
-    }
+.nav-dropdown.active {
+    transform: translateX(0) !important;
 }
 
-/* Top-left icon inside drawer */
 .drawer-header {
     display: flex !important;
     justify-content: flex-start !important;
@@ -130,12 +122,6 @@ nav,
     margin-bottom: 2rem !important;
 }
 
-/* Slide into view when active class is applied by JS */
-.nav-dropdown.active {
-    transform: translateX(0) !important;
-}
-
-/* OVERRIDE ALL THEME HIDING RULES & FORCE LINK VISIBILITY */
 .nav-dropdown .nav-links,
 .nav-links,
 ul.nav-links {
@@ -181,15 +167,6 @@ ul.nav-links li a {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .nav-dropdown .nav-links a,
-    .nav-links a,
-    ul.nav-links li a {
-        font-size: 1.15rem !important;
-    }
-}
-
-/* Dark Backdrop Overlay */
 .nav-overlay {
     position: fixed !important;
     top: 0 !important;
@@ -211,38 +188,76 @@ ul.nav-links li a {
 }
 
 /* ==========================================================================
-   STRIP BLACK BACKGROUNDS FROM MOBILE DRAWER LINKS & CONTAINERS
+   MOBILE-SPECIFIC OVERRIDES (TOP ALIGNMENT & COLOR STRIPPING)
    ========================================================================== */
 
 @media screen and (max-width: 768px) {
-    /* 1. Ensure drawer panel keeps solid theme color */
+    .nav-container {
+        height: 90px !important;
+    }
+    
+    .logo {
+        margin-left: 1.5vw !important;
+    }
+
+    /* 1. Reset drawer container & force flex-start from Y=0 */
     .nav-dropdown,
     div#nav-menu {
+        width: 85vw !important;
+        padding: 1rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        align-content: flex-start !important;
         background-color: #384959 !important;
         background: #384959 !important;
     }
 
-    /* 2. Force list wrapper to be completely transparent */
+    /* 2. Freeze drawer header size so it cannot push elements down */
+    .drawer-header {
+        margin-top: 0 !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: 45px !important;
+        flex: 0 0 auto !important;
+    }
+
+    /* 3. Force list wrapper to sit directly below header with transparent bg */
     .nav-dropdown .nav-links,
     .nav-links,
     ul.nav-links,
     #nav-menu ul {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        gap: 0.75rem !important;
+        flex: 0 0 auto !important;
+        justify-content: flex-start !important;
+        align-self: flex-start !important;
         background: transparent !important;
         background-color: transparent !important;
         box-shadow: none !important;
     }
 
-    /* 3. Force list items to be transparent */
+    /* 4. Strip backgrounds & margins from list items */
     .nav-dropdown .nav-links li,
     .nav-links li,
     ul.nav-links li,
     #nav-menu li {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        flex: 0 0 auto !important;
         background: transparent !important;
         background-color: transparent !important;
         border: none !important;
     }
 
-    /* 4. Force anchor tags (and their hover/focus states) to be transparent */
+    /* 5. Force link background transparency & white text */
     .nav-dropdown .nav-links a,
     .nav-links a,
     ul.nav-links li a,
@@ -250,6 +265,9 @@ ul.nav-links li a {
         background: transparent !important;
         background-color: transparent !important;
         color: #ffffff !important;
+        font-size: 1.15rem !important;
+        padding: 0.25rem 0 !important;
+        line-height: 1.2 !important;
     }
 
     .nav-dropdown .nav-links a:hover,
@@ -259,41 +277,5 @@ ul.nav-links li a {
         background: transparent !important;
         background-color: transparent !important;
         color: #88bcd4 !important;
-    }
-}
-
-/* ==========================================================================
-   KILL AUTO-MARGINS & FORCE LINKS TO STACK AT THE TOP ON MOBILE
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-    /* 1. Force the drawer container to align content from the top */
-    .nav-dropdown,
-    div#nav-menu {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important; /* Forces top alignment */
-        align-items: flex-start !important;
-        align-content: flex-start !important;
-    }
-
-    /* 2. Stop the close button header from expanding or pushing elements down */
-    .drawer-header {
-        margin-top: 0 !important;
-        margin-bottom: 1rem !important; /* Small gap above first link */
-        flex-grow: 0 !important;        /* Stops header from taking up available height */
-        height: auto !important;
-    }
-
-    /* 3. Kill margin-top: auto on the link list so it doesn't drop to the bottom */
-    .nav-dropdown .nav-links,
-    .nav-links,
-    ul.nav-links,
-    #nav-menu ul {
-        margin-top: 0 !important;       /* OVERRIDES THEME margin-top: auto */
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        flex-grow: 0 !important;        /* Stops list from expanding vertically */
-        justify-content: flex-start !important;
     }
 }
