@@ -88,8 +88,9 @@ nav,
     z-index: 9998 !important;
 }
 
-/* Off-canvas drawer container */
-.nav-dropdown {
+/* Off-canvas drawer container (TOP ALIGNED) */
+.nav-dropdown,
+div#nav-menu {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
@@ -101,55 +102,81 @@ nav,
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     padding: 1.5rem 2rem !important;
     box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 999999 !important; /* Maximum z-index layer above theme content */
+    z-index: 999999 !important;
     box-sizing: border-box !important;
-    overflow-y: auto !important; /* Enable scrolling if links exceed screen height */
+    overflow-y: auto !important;
 
     /* Hidden off-screen by default */
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    align-content: flex-start !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-/* Mobile drawer adjustments */
+/* Mobile drawer width */
 @media screen and (max-width: 768px) {
-    .nav-dropdown {
+    .nav-dropdown,
+    div#nav-menu {
         width: 85vw !important;
         padding: 1.25rem 1.5rem !important;
     }
 }
 
-/* Top-left icon inside drawer */
+/* Drawer Header Close Button Area (NO EXTRA EXPANSION) */
 .drawer-header {
     display: flex !important;
     justify-content: flex-start !important;
+    align-items: center !important;
     width: 100% !important;
-    margin-bottom: 2rem !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
 }
 
-/* Slide into view when active class is applied by JS */
+.drawer-trigger,
+#hamburger-close {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    line-height: 1 !important;
+    height: auto !important;
+}
+
+/* Slide into view when active */
 .nav-dropdown.active {
     transform: translateX(0) !important;
 }
 
-/* OVERRIDE ALL THEME HIDING RULES & FORCE LINK VISIBILITY */
+/* OVERRIDE ALL THEME HIDING RULES & FORCE TOP ALIGNMENT */
 .nav-dropdown .nav-links,
 .nav-links,
 ul.nav-links {
     display: flex !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
     visibility: visible !important;
     opacity: 1 !important;
     height: auto !important;
     max-height: none !important;
     list-style: none !important;
     padding: 0 !important;
-    margin: 0 !important;
-    gap: 1.5rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    gap: 1rem !important;
     width: 100% !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .nav-dropdown .nav-links li,
@@ -160,6 +187,10 @@ ul.nav-links li {
     opacity: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .nav-dropdown .nav-links a,
@@ -173,6 +204,8 @@ ul.nav-links li a {
     font-weight: 600 !important;
     text-decoration: none !important;
     padding: 0.5rem 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
     transition: color 0.2s ease, transform 0.2s ease;
 
     &:hover {
@@ -208,59 +241,4 @@ ul.nav-links li a {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-}
-
-/* ==========================================================================
-   DRAWER POSITIONING & BACKGROUND OVERRIDES (FIX BOTTOM SCROLL & BLACK BG)
-   ========================================================================== */
-
-/* 1. Force the drawer container to start content at the top */
-.nav-dropdown,
-div#nav-menu {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important; /* Top-align all drawer elements */
-    align-items: flex-start !important;
-    padding-top: 1.5rem !important;
-    background-color: #384959 !important; /* Ensure solid theme background */
-}
-
-/* 2. Top-align the drawer header close button area */
-.drawer-header {
-    margin-bottom: 1rem !important; /* Compact space between close btn & links */
-    width: 100% !important;
-}
-
-/* 3. Force navigation links to sit right below the header without pushing down */
-.nav-dropdown .nav-links,
-.nav-links,
-ul.nav-links {
-    margin-top: 0 !important; /* Kills any margin-top: auto pushing it down */
-    margin-bottom: 0 !important;
-    padding: 0 !important;
-    justify-content: flex-start !important;
-    align-self: flex-start !important;
-    width: 100% !important;
-    background: transparent !important; /* Removes black block background */
-    background-color: transparent !important;
-}
-
-/* 4. Strip black backgrounds from list items and anchor tags */
-.nav-dropdown .nav-links li,
-.nav-links li,
-ul.nav-links li {
-    background: transparent !important;
-    background-color: transparent !important;
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-.nav-dropdown .nav-links a,
-.nav-links a,
-ul.nav-links li a {
-    background: transparent !important;
-    background-color: transparent !important; /* Removes black hover/link backgrounds */
-    color: #ffffff !important;
-    padding: 0.75rem 0 !important;
-    display: block !important;
 }
