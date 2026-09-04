@@ -209,3 +209,91 @@ ul.nav-links li a {
     visibility: visible !important;
     pointer-events: auto !important;
 }
+
+/* ==========================================================================
+   STRIP BLACK BACKGROUNDS FROM MOBILE DRAWER LINKS & CONTAINERS
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Ensure drawer panel keeps solid theme color */
+    .nav-dropdown,
+    div#nav-menu {
+        background-color: #384959 !important;
+        background: #384959 !important;
+    }
+
+    /* 2. Force list wrapper to be completely transparent */
+    .nav-dropdown .nav-links,
+    .nav-links,
+    ul.nav-links,
+    #nav-menu ul {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. Force list items to be transparent */
+    .nav-dropdown .nav-links li,
+    .nav-links li,
+    ul.nav-links li,
+    #nav-menu li {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+    }
+
+    /* 4. Force anchor tags (and their hover/focus states) to be transparent */
+    .nav-dropdown .nav-links a,
+    .nav-links a,
+    ul.nav-links li a,
+    #nav-menu a {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: #ffffff !important;
+    }
+
+    .nav-dropdown .nav-links a:hover,
+    .nav-links a:hover,
+    ul.nav-links li a:hover,
+    #nav-menu a:hover {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: #88bcd4 !important;
+    }
+}
+
+/* ==========================================================================
+   KILL AUTO-MARGINS & FORCE LINKS TO STACK AT THE TOP ON MOBILE
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Force the drawer container to align content from the top */
+    .nav-dropdown,
+    div#nav-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; /* Forces top alignment */
+        align-items: flex-start !important;
+        align-content: flex-start !important;
+    }
+
+    /* 2. Stop the close button header from expanding or pushing elements down */
+    .drawer-header {
+        margin-top: 0 !important;
+        margin-bottom: 1rem !important; /* Small gap above first link */
+        flex-grow: 0 !important;        /* Stops header from taking up available height */
+        height: auto !important;
+    }
+
+    /* 3. Kill margin-top: auto on the link list so it doesn't drop to the bottom */
+    .nav-dropdown .nav-links,
+    .nav-links,
+    ul.nav-links,
+    #nav-menu ul {
+        margin-top: 0 !important;       /* OVERRIDES THEME margin-top: auto */
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        flex-grow: 0 !important;        /* Stops list from expanding vertically */
+        justify-content: flex-start !important;
+    }
+}
