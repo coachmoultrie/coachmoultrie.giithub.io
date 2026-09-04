@@ -279,3 +279,12 @@ ul.nav-links li a {
         color: #88bcd4 !important;
     }
 }
+
+/* Prevent teleported drawer from absorbing body flex positioning */
+body > #nav-menu {
+    top: 0 !important;
+    bottom: auto !important;
+    margin-top: 0 !important;
+    justify-content: flex-start !important;
+    align-content: flex-start !important;
+}

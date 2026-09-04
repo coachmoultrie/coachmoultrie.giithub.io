@@ -18,22 +18,22 @@
             ☰
         </button>
 
-        <!-- Off-Canvas Drawer Panel -->
-        <div class="nav-dropdown" id="nav-menu">
-            <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; width: 100% !important; margin-bottom: 2rem !important;">
+        <!-- Off-Canvas Drawer Panel (HARD OVERRIDE INLINE RESET) -->
+        <div class="nav-dropdown" id="nav-menu" style="margin: 0 !important; margin-top: 0 !important; top: 0 !important; bottom: auto !important; justify-content: flex-start !important; align-content: flex-start !important; align-items: flex-start !important;">
+            <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; width: 100% !important; margin-top: 0 !important; margin-bottom: 1rem !important; height: auto !important; flex: 0 0 auto !important;">
                 <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem !important;">
                     ✕
                 </button>
             </div>
 
-            <!-- FORCED VISIBLE NAVIGATION LINKS -->
-            <ul class="nav-links" style="display: flex !important; flex-direction: column !important; list-style: none !important; padding: 0 !important; margin: 0 !important; gap: 1.5rem !important; opacity: 1 !important; visibility: visible !important;">
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Home</a></li>
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Social</a></li>
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Blog</a></li>
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Portfolio</a></li>
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">About</a></li>
-                <li style="display: block !important; opacity: 1 !important; visibility: visible !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important;">Travel</a></li>
+            <!-- FORCED TOP NAVIGATION LINKS -->
+            <ul class="nav-links" style="display: flex !important; flex-direction: column !important; list-style: none !important; padding: 0 !important; margin: 0 !important; margin-top: 0 !important; gap: 1rem !important; opacity: 1 !important; visibility: visible !important; flex: 0 0 auto !important; justify-content: flex-start !important; width: 100% !important;">
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Home</a></li>
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Social</a></li>
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Blog</a></li>
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Portfolio</a></li>
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">About</a></li>
+                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Travel</a></li>
             </ul>
         </div>
 
@@ -50,7 +50,6 @@
       const menu = document.getElementById('nav-menu');
       const overlay = document.getElementById('nav-overlay');
 
-      // Teleport menu and overlay to <body> to bypass parent theme overflow:hidden clipping
       if (menu && menu.parentElement !== document.body) {
         document.body.appendChild(menu);
       }
