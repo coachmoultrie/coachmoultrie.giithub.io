@@ -1,17 +1,11 @@
 /* ==========================================================================
-   GLOBAL BRANDING & BACKGROUND OVERRIDES
+   GLOBAL BRANDING & SEQUENTIAL BACKGROUND OVERRIDES
    ========================================================================== */
 
-/* Force solid theme color background across all site containers */
-body,
-.hero,
-.site-header,
-main,
-section,
-header,
-canvas {
+body {
+    margin: 0 !important;
+    padding: 0 !important;
     background-color: #384959 !important;
-    background-image: none !important;
 }
 
 /* Hide background particles or canvas animations */
@@ -21,6 +15,47 @@ canvas,
 .bg-animation {
     display: none !important;
     visibility: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   SEQUENTIAL PHOTO SECTIONS (Photo 1 -> Photo 2 -> Footer)
+   -------------------------------------------------------------------------- */
+
+/* Section 1: Hero / Top area with image1.JPG */
+.hero,
+.section-first,
+main > section:first-of-type {
+    min-height: 100vh !important;
+    width: 100% !important;
+    background-image: url('/images/image1.JPG') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+/* Section 2: Secondary area with image2.jpeg directly underneath */
+.section-second,
+main > section:nth-of-type(2) {
+    min-height: 100vh !important;
+    width: 100% !important;
+    background-image: url('/images/image2.jpeg') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+/* Clear transparent backgrounds on general layout elements so images show */
+main {
+    background-color: transparent !important;
+}
+
+/* Footer sits naturally below Section 2 in normal page layout flow */
+footer,
+.site-footer {
+    position: relative !important;
+    width: 100% !important;
+    background-color: #384959 !important;
+    z-index: 10 !important;
 }
 
 
@@ -122,21 +157,6 @@ nav,
    OFF-CANVAS NAVIGATION DRAWER
    ========================================================================== */
 
-/*
-   IMPORTANT:
-
-   The JavaScript moves #nav-menu directly under <body>.
-
-   That means we intentionally use:
-
-       body > #nav-menu
-
-   below.
-
-   This prevents the original Nomad-Tech navigation CSS from controlling
-   the drawer's position or flex behavior.
-*/
-
 .nav-dropdown,
 div#nav-menu {
     position: fixed !important;
@@ -176,10 +196,6 @@ div#nav-menu {
     overflow-x: hidden !important;
     overflow-y: auto !important;
 
-    /*
-       Hidden state:
-       Drawer sits completely off the right side of the screen.
-    */
     transform: translateX(100%) !important;
 
     transition:
@@ -225,7 +241,7 @@ div#nav-menu.active {
 
     margin: 0 !important;
 
-    padding: 0.5rem !important;
+    padding: 0 .5rem !important;
 
     transform: none !important;
 }
@@ -234,23 +250,6 @@ div#nav-menu.active {
 /* ==========================================================================
    NAVIGATION LINKS
    ========================================================================== */
-
-/*
-   This is the important section for the "links at the bottom" problem.
-
-   We explicitly reset:
-
-   - position
-   - top
-   - bottom
-   - transform
-   - margins
-   - flex behavior
-   - height
-
-   This prevents the Nomad-Tech theme's original navigation CSS from
-   placing the UL at the bottom of the drawer.
-*/
 
 .nav-dropdown .nav-links,
 .nav-links,
@@ -438,10 +437,6 @@ ul.nav-links li a:hover {
 
 @media screen and (max-width: 768px) {
 
-    /* ----------------------------------------------------------------------
-       MOBILE HEADER
-       ---------------------------------------------------------------------- */
-
     .nav-container {
         height: 90px !important;
     }
@@ -450,22 +445,9 @@ ul.nav-links li a:hover {
         margin-left: 1.5vw !important;
     }
 
-
-    /* ----------------------------------------------------------------------
-       MOBILE HAMBURGER
-       ---------------------------------------------------------------------- */
-
     .header-trigger {
         right: 0.75rem !important;
     }
-
-
-    /* ----------------------------------------------------------------------
-       MOBILE DRAWER
-
-       Because JavaScript moves #nav-menu to <body>, these rules specifically
-       target body > #nav-menu.
-       ---------------------------------------------------------------------- */
 
     body > #nav-menu.nav-dropdown,
     body > div#nav-menu {
@@ -509,11 +491,6 @@ ul.nav-links li a:hover {
         transform: translateX(0) !important;
     }
 
-
-    /* ----------------------------------------------------------------------
-       MOBILE DRAWER HEADER
-       ---------------------------------------------------------------------- */
-
     body > #nav-menu .drawer-header {
         position: static !important;
 
@@ -535,13 +512,6 @@ ul.nav-links li a:hover {
 
         transform: none !important;
     }
-
-
-    /* ----------------------------------------------------------------------
-       MOBILE NAVIGATION LIST
-
-       HARD RESET OF THE UL
-       ---------------------------------------------------------------------- */
 
     body > #nav-menu ul.nav-links,
     body > #nav-menu .nav-links,
@@ -588,13 +558,6 @@ ul.nav-links li a:hover {
         box-shadow: none !important;
     }
 
-
-    /* ----------------------------------------------------------------------
-       MOBILE NAVIGATION ITEMS
-
-       HARD RESET OF EACH LI
-       ---------------------------------------------------------------------- */
-
     body > #nav-menu ul.nav-links li,
     body > #nav-menu .nav-links li {
         position: static !important;
@@ -628,13 +591,6 @@ ul.nav-links li a:hover {
 
         border: none !important;
     }
-
-
-    /* ----------------------------------------------------------------------
-       MOBILE NAVIGATION LINKS
-
-       HARD RESET OF EACH LINK
-       ---------------------------------------------------------------------- */
 
     body > #nav-menu ul.nav-links li a,
     body > #nav-menu .nav-links li a,
@@ -688,11 +644,6 @@ ul.nav-links li a:hover {
 /* ==========================================================================
    TELEPORTED DRAWER SAFETY RULES
    ========================================================================== */
-
-/*
-   These rules apply after JavaScript moves the drawer and overlay directly
-   into <body>.
-*/
 
 body > #nav-menu {
     position: fixed !important;
