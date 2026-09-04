@@ -3,24 +3,34 @@
    ========================================================================== */
 
 /* Force solid theme color background across all site containers */
-body, .hero, .site-header, main, section, header, canvas {
+body,
+.hero,
+.site-header,
+main,
+section,
+header,
+canvas {
     background-color: #384959 !important;
     background-image: none !important;
 }
 
 /* Hide background particles or canvas animations */
-canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
+canvas,
+#particles-js,
+.particles-js-canvas-el,
+.bg-animation {
     display: none !important;
     visibility: hidden !important;
 }
+
 
 /* ==========================================================================
    HEADER CONTAINER & LOGO
    ========================================================================== */
 
-header, 
-.site-header, 
-nav, 
+header,
+.site-header,
+nav,
 .container {
     max-width: 100% !important;
     width: 100% !important;
@@ -34,19 +44,27 @@ nav,
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
+
     width: 100% !important;
     height: 122px !important;
+
+    margin: 0 !important;
     padding: 0 !important;
+
     position: relative !important;
     overflow: visible !important;
 }
 
 .logo {
     margin-left: 3vw !important;
+
     height: 100% !important;
+
     display: inline-flex !important;
     align-items: center !important;
+
     text-decoration: none !important;
+
     z-index: 9997 !important;
 }
 
@@ -54,22 +72,30 @@ nav,
     height: 95% !important;
     width: auto !important;
     max-height: none !important;
+
     object-fit: contain !important;
+
     display: block !important;
 }
 
+
 /* ==========================================================================
-   HAMBURGER BUTTONS & BASE DRAWER LAYOUT
+   HAMBURGER BUTTONS
    ========================================================================== */
 
 .hamburger-btn {
     background: none !important;
     border: none !important;
+
     font-size: 2rem !important;
-    color: #ffffff !important;
-    cursor: pointer !important;
-    padding: 0.5rem 1rem !important;
     line-height: 1 !important;
+
+    color: #ffffff !important;
+
+    cursor: pointer !important;
+
+    padding: 0.5rem 1rem !important;
+
     transition: opacity 0.2s ease;
 
     &:hover {
@@ -77,214 +103,626 @@ nav,
     }
 }
 
+/* Hamburger button in the main header */
 .header-trigger {
     position: absolute !important;
+
     right: 1.5rem !important;
     top: 50% !important;
+
     transform: translateY(-50%) !important;
+
     margin: 0 !important;
-    z-index: 9998 !important;
+
+    z-index: 999998 !important;
 }
+
+
+/* ==========================================================================
+   OFF-CANVAS NAVIGATION DRAWER
+   ========================================================================== */
+
+/*
+   IMPORTANT:
+
+   The JavaScript moves #nav-menu directly under <body>.
+
+   That means we intentionally use:
+
+       body > #nav-menu
+
+   below.
+
+   This prevents the original Nomad-Tech navigation CSS from controlling
+   the drawer's position or flex behavior.
+*/
 
 .nav-dropdown,
 div#nav-menu {
     position: fixed !important;
+
     top: 0 !important;
     right: 0 !important;
+    bottom: auto !important;
     left: auto !important;
+
     width: 30vw !important;
+
     height: 100vh !important;
     height: 100dvh !important;
-    background-color: #384959 !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1.5rem 2rem !important;
-    box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
-    z-index: 999999 !important;
-    box-sizing: border-box !important;
-    overflow-y: auto !important;
 
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 !important;
+
+    padding: 1.5rem 2rem !important;
+
+    box-sizing: border-box !important;
+
+    background: #384959 !important;
+    background-color: #384959 !important;
+    background-image: none !important;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
+
+    z-index: 999999 !important;
+
     display: flex !important;
     flex-direction: column !important;
+
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    /*
+       Hidden state:
+       Drawer sits completely off the right side of the screen.
+    */
+    transform: translateX(100%) !important;
+
+    transition:
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-.nav-dropdown.active {
+/* Open drawer */
+.nav-dropdown.active,
+div#nav-menu.active {
     transform: translateX(0) !important;
 }
 
+
+/* ==========================================================================
+   DRAWER HEADER / CLOSE BUTTON
+   ========================================================================== */
+
 .drawer-header {
+    position: static !important;
+
     display: flex !important;
+
     justify-content: flex-start !important;
+    align-items: flex-start !important;
+
     width: 100% !important;
-    margin-bottom: 2rem !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 0 2rem 0 !important;
+    padding: 0 !important;
+
+    flex: 0 0 auto !important;
 }
+
+.drawer-trigger {
+    position: static !important;
+
+    margin: 0 !important;
+
+    padding: 0.5rem !important;
+
+    transform: none !important;
+}
+
+
+/* ==========================================================================
+   NAVIGATION LINKS
+   ========================================================================== */
+
+/*
+   This is the important section for the "links at the bottom" problem.
+
+   We explicitly reset:
+
+   - position
+   - top
+   - bottom
+   - transform
+   - margins
+   - flex behavior
+   - height
+
+   This prevents the Nomad-Tech theme's original navigation CSS from
+   placing the UL at the bottom of the drawer.
+*/
 
 .nav-dropdown .nav-links,
 .nav-links,
 ul.nav-links {
+    position: static !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    transform: none !important;
+
     display: flex !important;
     flex-direction: column !important;
+
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+
+    align-content: flex-start !important;
+    align-self: flex-start !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    gap: 1.5rem !important;
+
+    flex: 0 0 auto !important;
+
+    list-style: none !important;
+
     visibility: visible !important;
     opacity: 1 !important;
-    height: auto !important;
-    max-height: none !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    gap: 1.5rem !important;
-    width: 100% !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+
+    box-shadow: none !important;
 }
+
+
+/* Individual navigation items */
 
 .nav-dropdown .nav-links li,
 .nav-links li,
 ul.nav-links li {
+    position: static !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    transform: none !important;
+
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
     margin: 0 !important;
     padding: 0 !important;
+
+    flex: 0 0 auto !important;
+
+    list-style: none !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+
+    border: none !important;
 }
+
+
+/* Navigation links themselves */
 
 .nav-dropdown .nav-links a,
 .nav-links a,
 ul.nav-links li a {
+    position: static !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+
+    transform: none !important;
+
     color: #ffffff !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+
     font-size: 1.25rem !important;
     font-weight: 600 !important;
-    text-decoration: none !important;
-    padding: 0.5rem 0 !important;
-    transition: color 0.2s ease, transform 0.2s ease;
 
-    &:hover {
-        color: #88bcd4 !important;
-        transform: translateX(4px);
-    }
+    line-height: 1.2 !important;
+
+    text-decoration: none !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease !important;
 }
+
+.nav-dropdown .nav-links a:hover,
+.nav-links a:hover,
+ul.nav-links li a:hover {
+    color: #88bcd4 !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+
+    transform: translateX(4px) !important;
+}
+
+
+/* ==========================================================================
+   DARK BACKDROP OVERLAY
+   ========================================================================== */
 
 .nav-overlay {
     position: fixed !important;
+
     top: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
     left: 0 !important;
+
     width: 100vw !important;
     height: 100vh !important;
+    height: 100dvh !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
     background-color: rgba(0, 0, 0, 0.6) !important;
+
     z-index: 999998 !important;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease !important;
 }
 
 .nav-overlay.active {
     opacity: 1 !important;
+
     visibility: visible !important;
+
     pointer-events: auto !important;
 }
 
+
 /* ==========================================================================
-   MOBILE-SPECIFIC OVERRIDES (TOP ALIGNMENT & COLOR STRIPPING)
+   MOBILE DRAWER
    ========================================================================== */
 
 @media screen and (max-width: 768px) {
+
+    /* ----------------------------------------------------------------------
+       MOBILE HEADER
+       ---------------------------------------------------------------------- */
+
     .nav-container {
         height: 90px !important;
     }
-    
+
     .logo {
         margin-left: 1.5vw !important;
     }
 
-    /* 1. Reset drawer container & force flex-start from Y=0 */
-    .nav-dropdown,
-    div#nav-menu {
+
+    /* ----------------------------------------------------------------------
+       MOBILE HAMBURGER
+       ---------------------------------------------------------------------- */
+
+    .header-trigger {
+        right: 0.75rem !important;
+    }
+
+
+    /* ----------------------------------------------------------------------
+       MOBILE DRAWER
+
+       Because JavaScript moves #nav-menu to <body>, these rules specifically
+       target body > #nav-menu.
+       ---------------------------------------------------------------------- */
+
+    body > #nav-menu.nav-dropdown,
+    body > div#nav-menu {
+        position: fixed !important;
+
+        top: 0 !important;
+        right: 0 !important;
+        bottom: auto !important;
+        left: auto !important;
+
         width: 85vw !important;
+
+        height: 100vh !important;
+        height: 100dvh !important;
+
+        margin: 0 !important;
+
         padding: 1rem !important;
-        padding-top: 1rem !important;
-        padding-bottom: 0 !important;
+
+        box-sizing: border-box !important;
+
         display: flex !important;
         flex-direction: column !important;
+
         justify-content: flex-start !important;
         align-items: flex-start !important;
         align-content: flex-start !important;
-        background-color: #384959 !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
         background: #384959 !important;
+        background-color: #384959 !important;
+        background-image: none !important;
+
+        transform: translateX(100%) !important;
     }
 
-    /* 2. Freeze drawer header size so it cannot push elements down */
-    .drawer-header {
-        margin-top: 0 !important;
-        margin-bottom: 0.75rem !important;
-        padding: 0 !important;
+    body > #nav-menu.nav-dropdown.active,
+    body > div#nav-menu.active {
+        transform: translateX(0) !important;
+    }
+
+
+    /* ----------------------------------------------------------------------
+       MOBILE DRAWER HEADER
+       ---------------------------------------------------------------------- */
+
+    body > #nav-menu .drawer-header {
+        position: static !important;
+
+        display: flex !important;
+
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+
+        width: 100% !important;
+
         height: auto !important;
         min-height: 0 !important;
-        max-height: 45px !important;
+        max-height: none !important;
+
+        margin: 0 0 0.75rem 0 !important;
+        padding: 0 !important;
+
         flex: 0 0 auto !important;
+
+        transform: none !important;
     }
 
-    /* 3. Force list wrapper to sit directly below header with transparent bg */
-    .nav-dropdown .nav-links,
-    .nav-links,
-    ul.nav-links,
-    #nav-menu ul {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-        gap: 0.75rem !important;
-        flex: 0 0 auto !important;
+
+    /* ----------------------------------------------------------------------
+       MOBILE NAVIGATION LIST
+
+       HARD RESET OF THE UL
+       ---------------------------------------------------------------------- */
+
+    body > #nav-menu ul.nav-links,
+    body > #nav-menu .nav-links,
+    body > #nav-menu ul {
+        position: static !important;
+
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        transform: none !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
         justify-content: flex-start !important;
+        align-items: flex-start !important;
+        align-content: flex-start !important;
+
         align-self: flex-start !important;
+
+        width: 100% !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        gap: 0.75rem !important;
+
+        flex: 0 0 auto !important;
+
+        list-style: none !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
         background: transparent !important;
         background-color: transparent !important;
+
         box-shadow: none !important;
     }
 
-    /* 4. Strip backgrounds & margins from list items */
-    .nav-dropdown .nav-links li,
-    .nav-links li,
-    ul.nav-links li,
-    #nav-menu li {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+
+    /* ----------------------------------------------------------------------
+       MOBILE NAVIGATION ITEMS
+
+       HARD RESET OF EACH LI
+       ---------------------------------------------------------------------- */
+
+    body > #nav-menu ul.nav-links li,
+    body > #nav-menu .nav-links li {
+        position: static !important;
+
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        transform: none !important;
+
+        display: block !important;
+
+        width: 100% !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
         flex: 0 0 auto !important;
+
+        list-style: none !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
         background: transparent !important;
         background-color: transparent !important;
+
         border: none !important;
     }
 
-    /* 5. Force link background transparency & white text */
-    .nav-dropdown .nav-links a,
-    .nav-links a,
-    ul.nav-links li a,
-    #nav-menu a {
+
+    /* ----------------------------------------------------------------------
+       MOBILE NAVIGATION LINKS
+
+       HARD RESET OF EACH LINK
+       ---------------------------------------------------------------------- */
+
+    body > #nav-menu ul.nav-links li a,
+    body > #nav-menu .nav-links li a,
+    body > #nav-menu a {
+        position: static !important;
+
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        display: block !important;
+
+        width: auto !important;
+        height: auto !important;
+
+        margin: 0 !important;
+        padding: 0.25rem 0 !important;
+
+        transform: none !important;
+
+        color: #ffffff !important;
+
         background: transparent !important;
         background-color: transparent !important;
-        color: #ffffff !important;
+
         font-size: 1.15rem !important;
-        padding: 0.25rem 0 !important;
+        font-weight: 600 !important;
+
         line-height: 1.2 !important;
+
+        text-decoration: none !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
-    .nav-dropdown .nav-links a:hover,
-    .nav-links a:hover,
-    ul.nav-links li a:hover,
-    #nav-menu a:hover {
+    body > #nav-menu ul.nav-links li a:hover,
+    body > #nav-menu .nav-links li a:hover,
+    body > #nav-menu a:hover {
+        color: #88bcd4 !important;
+
         background: transparent !important;
         background-color: transparent !important;
-        color: #88bcd4 !important;
+
+        transform: translateX(4px) !important;
     }
 }
 
-/* Prevent teleported drawer from absorbing body flex positioning */
+
+/* ==========================================================================
+   TELEPORTED DRAWER SAFETY RULES
+   ========================================================================== */
+
+/*
+   These rules apply after JavaScript moves the drawer and overlay directly
+   into <body>.
+*/
+
 body > #nav-menu {
+    position: fixed !important;
+
     top: 0 !important;
+    right: 0 !important;
     bottom: auto !important;
-    margin-top: 0 !important;
+    left: auto !important;
+
+    margin: 0 !important;
+
     justify-content: flex-start !important;
     align-content: flex-start !important;
+}
+
+body > #nav-overlay {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ==========================================================================
+   PREVENT BODY HORIZONTAL SCROLLING WHEN DRAWER IS OPEN
+   ========================================================================== */
+
+body.mobile-menu-open {
+    overflow-x: hidden !important;
 }

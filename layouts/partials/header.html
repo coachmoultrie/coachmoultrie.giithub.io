@@ -1,87 +1,347 @@
 {{ $style := resources.Get "scss/custom.scss" | toCSS }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-<nav role="navigation" aria-label="Main navigation" style="width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important;">
-    <div class="nav-container" style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; height: 122px !important; position: relative !important;">
-        
-        <!-- Logo Link & Image -->
-        <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home" style="margin-left: 3vw !important; height: 100% !important; display: inline-flex !important; align-items: center !important; text-decoration: none !important; z-index: 9997 !important;">
+<nav role="navigation" aria-label="Main navigation"
+    style="width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important;">
+
+    <div class="nav-container"
+        style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; height: 122px !important; position: relative !important;">
+
+        <!-- ================================================================
+             LOGO
+             ================================================================ -->
+
+        <a href="{{ .Site.BaseURL }}"
+            class="logo"
+            aria-label="{{ .Site.Title }} - Home"
+            style="margin-left: 3vw !important; height: 100% !important; display: inline-flex !important; align-items: center !important; text-decoration: none !important; z-index: 999997 !important;">
+
             {{ if .Site.Params.logo }}
-                <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" style="height: 95% !important; width: auto !important; object-fit: contain !important; display: block !important;" />
+
+                <img
+                    src="{{ .Site.Params.logo | relURL }}"
+                    alt="{{ .Site.Title }} Logo"
+                    class="logo-img"
+                    style="height: 95% !important; width: auto !important; object-fit: contain !important; display: block !important;"
+                />
+
             {{ else }}
-                <span style="font-size: 1.8rem; font-weight: bold; color: #fff;">{{ .Site.Title }}</span>
+
+                <span style="font-size: 1.8rem; font-weight: bold; color: #fff;">
+                    {{ .Site.Title }}
+                </span>
+
             {{ end }}
+
         </a>
 
-        <!-- Open Drawer Trigger Button -->
-        <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem 1rem !important; position: absolute !important; right: 1.5rem !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 9998 !important;">
+
+        <!-- ================================================================
+             HAMBURGER BUTTON
+             ================================================================ -->
+
+        <button
+            class="hamburger-btn header-trigger"
+            id="hamburger-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Open navigation menu"
+            style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem 1rem !important; position: absolute !important; right: 1.5rem !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 999998 !important;"
+        >
             ☰
         </button>
 
-        <!-- Off-Canvas Drawer Panel -->
-        <div class="nav-dropdown" id="nav-menu" style="display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; margin: 0 !important; margin-top: 0 !important; top: 0 !important; bottom: auto !important; height: 100vh !important; height: 100dvh !important;">
-            
-            <!-- Close Button Header -->
-            <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; width: 100% !important; margin-top: 0 !important; margin-bottom: 1rem !important; height: auto !important; flex: none !important;">
-                <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem !important;">
+
+        <!-- ================================================================
+             OFF-CANVAS MOBILE DRAWER
+             
+             JavaScript moves this element directly underneath <body>.
+             This prevents the theme's original navigation container from
+             affecting its position.
+             ================================================================ -->
+
+        <div
+            class="nav-dropdown"
+            id="nav-menu"
+            aria-hidden="true"
+            style="display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; margin: 0 !important; margin-top: 0 !important; top: 0 !important; bottom: auto !important; height: 100vh !important; height: 100dvh !important;"
+        >
+
+            <!-- ============================================================
+                 DRAWER HEADER / CLOSE BUTTON
+                 ============================================================ -->
+
+            <div
+                class="drawer-header"
+                style="display: flex !important; justify-content: flex-start !important; align-items: flex-start !important; width: 100% !important; margin-top: 0 !important; margin-bottom: 1rem !important; height: auto !important; flex: 0 0 auto !important;"
+            >
+
+                <button
+                    class="hamburger-btn drawer-trigger"
+                    id="hamburger-close"
+                    type="button"
+                    aria-label="Close navigation menu"
+                    style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem !important;"
+                >
                     ✕
                 </button>
+
             </div>
 
-            <!-- Navigation Links -->
-            <ul class="nav-links" style="display: flex !important; flex-direction: column !important; list-style: none !important; padding: 0 !important; margin: 0 !important; margin-top: 0 !important; gap: 1rem !important; opacity: 1 !important; visibility: visible !important; flex: none !important; justify-content: flex-start !important; width: 100% !important;">
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Home</a></li>
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Social</a></li>
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Blog</a></li>
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Portfolio</a></li>
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">About</a></li>
-                <li style="display: block !important; margin: 0 !important; padding: 0 !important; flex: none !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; padding: 0.25rem 0 !important;">Travel</a></li>
+
+            <!-- ============================================================
+                 NAVIGATION LINKS
+                 ============================================================ -->
+
+            <ul
+                class="nav-links"
+                style="display: flex !important; flex-direction: column !important; list-style: none !important; padding: 0 !important; margin: 0 !important; gap: 1rem !important; opacity: 1 !important; visibility: visible !important; flex: 0 0 auto !important; justify-content: flex-start !important; width: 100% !important;"
+            >
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}social/">
+                        Social
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}posts/">
+                        Blog
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}portfolio/">
+                        Portfolio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}about/">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ .Site.BaseURL }}travel/">
+                        Travel
+                    </a>
+                </li>
+
             </ul>
+
         </div>
 
-        <!-- Dark Backdrop Overlay -->
-        <div class="nav-overlay" id="nav-overlay"></div>
+
+        <!-- ================================================================
+             DARK BACKDROP
+             ================================================================ -->
+
+        <div
+            class="nav-overlay"
+            id="nav-overlay"
+            aria-hidden="true"
+        ></div>
+
     </div>
+
 </nav>
 
+
+<!-- =========================================================================
+     MOBILE NAVIGATION JAVASCRIPT
+     ========================================================================= -->
+
 <script>
-  (function() {
+(function () {
+
+    /*
+     * Move the drawer and overlay directly under <body>.
+     *
+     * This is intentional. It prevents the Hugo theme's original header/
+     * navigation containers from affecting the drawer's position.
+     */
     function setupMobileMenu() {
-      const menu = document.getElementById('nav-menu');
-      const overlay = document.getElementById('nav-overlay');
 
-      if (menu && menu.parentElement !== document.body) {
-        document.body.appendChild(menu);
-      }
-      if (overlay && overlay.parentElement !== document.body) {
-        document.body.appendChild(overlay);
-      }
+        const menu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        if (menu && menu.parentElement !== document.body) {
+            document.body.appendChild(menu);
+        }
+
+        if (overlay && overlay.parentElement !== document.body) {
+            document.body.appendChild(overlay);
+        }
+
     }
 
-    function toggleNav() {
-      const menu = document.getElementById('nav-menu');
-      const overlay = document.getElementById('nav-overlay');
-      const toggleBtn = document.getElementById('hamburger-toggle');
 
-      if (!menu) return;
+    /*
+     * Open or close the navigation drawer.
+     */
+    function toggleNav(open) {
 
-      const isOpen = menu.classList.toggle('active');
-      if (overlay) overlay.classList.toggle('active');
-      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', isOpen);
+        const menu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('nav-overlay');
+        const toggleBtn = document.getElementById('hamburger-toggle');
+
+        if (!menu) {
+            return;
+        }
+
+        const shouldOpen =
+            typeof open === 'boolean'
+                ? open
+                : !menu.classList.contains('active');
+
+
+        /*
+         * Drawer
+         */
+        menu.classList.toggle('active', shouldOpen);
+        menu.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+
+
+        /*
+         * Dark overlay
+         */
+        if (overlay) {
+            overlay.classList.toggle('active', shouldOpen);
+            overlay.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        }
+
+
+        /*
+         * Hamburger accessibility state
+         */
+        if (toggleBtn) {
+            toggleBtn.setAttribute(
+                'aria-expanded',
+                shouldOpen ? 'true' : 'false'
+            );
+
+            toggleBtn.setAttribute(
+                'aria-label',
+                shouldOpen
+                    ? 'Close navigation menu'
+                    : 'Open navigation menu'
+            );
+        }
+
+
+        /*
+         * Prevent horizontal scrolling while drawer is open.
+         */
+        document.body.classList.toggle(
+            'mobile-menu-open',
+            shouldOpen
+        );
+
     }
 
-    document.addEventListener('click', function(e) {
-      const target = e.target;
-      if (target.closest('#hamburger-toggle') || target.closest('#hamburger-close') || target.closest('#nav-overlay')) {
-        e.preventDefault();
-        toggleNav();
-      }
+
+    /*
+     * Handle clicks.
+     */
+    document.addEventListener('click', function (e) {
+
+        /*
+         * Open drawer
+         */
+        if (e.target.closest('#hamburger-toggle')) {
+
+            e.preventDefault();
+
+            toggleNav(true);
+
+            return;
+        }
+
+
+        /*
+         * Close drawer
+         */
+        if (e.target.closest('#hamburger-close')) {
+
+            e.preventDefault();
+
+            toggleNav(false);
+
+            return;
+        }
+
+
+        /*
+         * Close when clicking the dark overlay.
+         */
+        if (e.target.closest('#nav-overlay')) {
+
+            e.preventDefault();
+
+            toggleNav(false);
+
+            return;
+        }
+
+
+        /*
+         * Close drawer after selecting a navigation link.
+         *
+         * This is mainly useful on mobile. Normal navigation still occurs.
+         */
+        if (
+            e.target.closest('#nav-menu a') &&
+            window.innerWidth <= 768
+        ) {
+
+            toggleNav(false);
+
+        }
+
     });
 
+
+    /*
+     * Close the drawer when pressing Escape.
+     */
+    document.addEventListener('keydown', function (e) {
+
+        if (e.key === 'Escape') {
+
+            const menu = document.getElementById('nav-menu');
+
+            if (menu && menu.classList.contains('active')) {
+                toggleNav(false);
+            }
+
+        }
+
+    });
+
+
+    /*
+     * Set everything up after the DOM exists.
+     */
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupMobileMenu);
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            setupMobileMenu
+        );
+
     } else {
-      setupMobileMenu();
+
+        setupMobileMenu();
+
     }
-  })();
+
+})();
 </script>
