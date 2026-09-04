@@ -1,4 +1,4 @@
-/* Global solid background #384959 */
+/* Global solid background */
 body, .hero, .site-header, main, section, header, canvas {
     background-color: #384959 !important;
     background-image: none !important;
@@ -9,220 +9,151 @@ canvas, #particles-js, .particles-js-canvas-el, .bg-animation {
     visibility: hidden !important;
 }
 
-/* Force header bar full width and prevent overflow clipping */
-header, 
-.site-header, 
-nav, 
-.container {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-}
-
-/* Header container layout scaled down by 30% (175px -> 122px) */
+/* Header container layout */
 .nav-container {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     width: 100% !important;
     height: 122px !important;
-    padding: 0 !important;
     position: relative !important;
     overflow: visible !important;
 }
 
-/* Logo position (maintained at 3vw from left) */
 .logo {
     margin-left: 3vw !important;
     height: 100% !important;
     display: inline-flex !important;
     align-items: center !important;
-    text-decoration: none !important;
-    z-index: 9997 !important;
 }
 
-/* Logo image filling 95% of the scaled header height */
 .logo-img {
     height: 95% !important;
     width: auto !important;
-    max-height: none !important;
     object-fit: contain !important;
-    display: block !important;
 }
 
-@media screen and (max-width: 768px) {
-    .nav-container {
-        height: 90px !important;
-    }
-    .logo {
-        margin-left: 1.5vw !important;
-    }
-}
-
-/* Base Hamburger Icon Styling */
+/* Buttons */
 .hamburger-btn {
     background: none !important;
     border: none !important;
     font-size: 2rem !important;
     color: #ffffff !important;
     cursor: pointer !important;
-    padding: 0.5rem 1rem !important;
+    padding: 0.5rem !important;
     line-height: 1 !important;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-        opacity: 0.8;
-    }
 }
 
-/* Trigger icon on far right when drawer is closed */
 .header-trigger {
     position: absolute !important;
     right: 1.5rem !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    margin: 0 !important;
     z-index: 9998 !important;
 }
 
-/* Off-canvas drawer container (TOP ALIGNED) */
+/* ==========================================================================
+   OFF-CANVAS DRAWER: FORCE TOP-ALIGNMENT & ZERO OUT HIDDEN PADDING/MARGINS
+   ========================================================================== */
+
 .nav-dropdown,
 div#nav-menu {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
     left: auto !important;
+    bottom: auto !important;
     width: 30vw !important;
     height: 100vh !important;
     height: 100dvh !important;
     background-color: #384959 !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 1.5rem 2rem !important;
-    box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
     z-index: 999999 !important;
+    
+    /* Zero out all inherited padding and margins */
+    padding: 1.25rem !important;
+    padding-top: 1.25rem !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
     box-sizing: border-box !important;
-    overflow-y: auto !important;
 
-    /* Hidden off-screen by default */
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Strict vertical stack from y=0 downwards */
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
     align-items: flex-start !important;
     align-content: flex-start !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+
+    /* Hidden off-screen by default */
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
 }
 
-/* Mobile drawer width */
 @media screen and (max-width: 768px) {
     .nav-dropdown,
     div#nav-menu {
         width: 85vw !important;
-        padding: 1.25rem 1.5rem !important;
+        padding: 1rem !important;
+        padding-top: 1rem !important;
     }
 }
 
-/* Drawer Header Close Button Area (NO EXTRA EXPANSION) */
-.drawer-header {
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    flex-grow: 0 !important;
-    flex-shrink: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1rem !important;
-    padding: 0 !important;
-}
-
-.drawer-trigger,
-#hamburger-close {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    line-height: 1 !important;
-    height: auto !important;
-}
-
-/* Slide into view when active */
 .nav-dropdown.active {
     transform: translateX(0) !important;
 }
 
-/* OVERRIDE ALL THEME HIDING RULES & FORCE TOP ALIGNMENT */
+/* Close button header area */
+.drawer-header {
+    width: 100% !important;
+    margin: 0 !important;
+    margin-bottom: 0.75rem !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important; /* Prevents header from stretching */
+}
+
+/* Top-Aligned Navigation Links */
 .nav-dropdown .nav-links,
 .nav-links,
 ul.nav-links {
+    list-style: none !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
+    margin-top: 0 !important; /* Kills margin-top: auto */
+    width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
-    align-items: flex-start !important;
-    flex-grow: 0 !important;
-    flex-shrink: 0 !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: auto !important;
-    max-height: none !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    gap: 1rem !important;
-    width: 100% !important;
+    gap: 0.75rem !important;
     background: transparent !important;
-    background-color: transparent !important;
+    flex: 0 0 auto !important; /* Prevents list from filling screen height */
 }
 
 .nav-dropdown .nav-links li,
 .nav-links li,
 ul.nav-links li {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
     height: auto !important;
     background: transparent !important;
-    background-color: transparent !important;
 }
 
 .nav-dropdown .nav-links a,
 .nav-links a,
 ul.nav-links li a {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     color: #ffffff !important;
     font-size: 1.25rem !important;
     font-weight: 600 !important;
     text-decoration: none !important;
-    padding: 0.5rem 0 !important;
+    display: block !important;
+    padding: 0.25rem 0 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
     background: transparent !important;
-    background-color: transparent !important;
-    transition: color 0.2s ease, transform 0.2s ease;
-
-    &:hover {
-        color: #88bcd4 !important;
-        transform: translateX(4px);
-    }
 }
 
-@media screen and (max-width: 768px) {
-    .nav-dropdown .nav-links a,
-    .nav-links a,
-    ul.nav-links li a {
-        font-size: 1.15rem !important;
-    }
-}
-
-/* Dark Backdrop Overlay */
+/* Dark Overlay */
 .nav-overlay {
     position: fixed !important;
     top: 0 !important;
@@ -233,12 +164,10 @@ ul.nav-links li a {
     z-index: 999998 !important;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .nav-overlay.active {
     opacity: 1 !important;
     visibility: visible !important;
-    pointer-events: auto !important;
 }
