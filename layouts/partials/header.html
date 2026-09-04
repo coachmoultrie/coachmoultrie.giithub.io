@@ -1,39 +1,39 @@
 {{ $style := resources.Get "scss/custom.scss" | toCSS }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
-<nav role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
+<nav role="navigation" aria-label="Main navigation" style="width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important;">
+    <div class="nav-container" style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; height: 122px !important; position: relative !important;">
         
-        <!-- Logo -->
-        <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home">
+        <!-- Logo Link & Image -->
+        <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Title }} - Home" style="margin-left: 3vw !important; height: 100% !important; display: inline-flex !important; align-items: center !important; text-decoration: none !important; z-index: 9997 !important;">
             {{ if .Site.Params.logo }}
-                <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" />
+                <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }} Logo" class="logo-img" style="height: 95% !important; width: auto !important; object-fit: contain !important; display: block !important;" />
             {{ else }}
-                <span>{{ .Site.Title }}</span>
+                <span style="font-size: 1.8rem; font-weight: bold; color: #fff;">{{ .Site.Title }}</span>
             {{ end }}
         </a>
 
         <!-- Open Drawer Trigger Button -->
-        <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <button class="hamburger-btn header-trigger" id="hamburger-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.5rem 1rem !important; position: absolute !important; right: 1.5rem !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 9998 !important;">
             ☰
         </button>
 
         <!-- Off-Canvas Drawer Panel -->
         <div class="nav-dropdown" id="nav-menu">
-            <div class="drawer-header">
-                <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu">
+            <div class="drawer-header" style="display: flex !important; justify-content: flex-start !important; align-items: center !important; width: 100% !important; height: auto !important; min-height: 0 !important; flex-grow: 0 !important; flex-shrink: 0 !important; margin-top: 0 !important; margin-bottom: 1rem !important; padding: 0 !important;">
+                <button class="hamburger-btn drawer-trigger" id="hamburger-close" aria-label="Close navigation menu" style="background: none !important; border: none !important; font-size: 2rem !important; color: #ffffff !important; cursor: pointer !important; padding: 0.25rem !important; line-height: 1 !important; margin: 0 !important;">
                     ✕
                 </button>
             </div>
 
-            <!-- CLEAN NAVIGATION LINKS -->
-            <ul class="nav-links">
-                <li><a href="{{ .Site.BaseURL }}">Home</a></li>
-                <li><a href="{{ .Site.BaseURL }}social/">Social</a></li>
-                <li><a href="{{ .Site.BaseURL }}posts/">Blog</a></li>
-                <li><a href="{{ .Site.BaseURL }}portfolio/">Portfolio</a></li>
-                <li><a href="{{ .Site.BaseURL }}about/">About</a></li>
-                <li><a href="{{ .Site.BaseURL }}travel/">Travel</a></li>
+            <!-- TOP-ALIGNED NAVIGATION LINKS -->
+            <ul class="nav-links" style="display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; flex-grow: 0 !important; flex-shrink: 0 !important; list-style: none !important; padding: 0 !important; margin: 0 !important; gap: 1rem !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; background: transparent !important;">
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">Home</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}social/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">Social</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}posts/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">Blog</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}portfolio/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">Portfolio</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}about/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">About</a></li>
+                <li style="display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><a href="{{ .Site.BaseURL }}travel/" style="display: block !important; color: #ffffff !important; font-size: 1.25rem !important; font-weight: 600 !important; text-decoration: none !important; opacity: 1 !important; visibility: visible !important; padding: 0.5rem 0 !important; background: transparent !important;">Travel</a></li>
             </ul>
         </div>
 
@@ -50,6 +50,7 @@
       const menu = document.getElementById('nav-menu');
       const overlay = document.getElementById('nav-overlay');
 
+      // Teleport menu and overlay to <body> to bypass parent theme overflow:hidden clipping
       if (menu && menu.parentElement !== document.body) {
         document.body.appendChild(menu);
       }
